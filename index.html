@@ -1,63 +1,139 @@
-<!doctype html><html lang="pt-BR"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#7b1021"><link rel="manifest" href="manifest.webmanifest"><title>Apimentados 🔥</title>
-<style>
-body{margin:0;background:#12070a;color:#fff7f8;font-family:system-ui,sans-serif}main{max-width:620px;margin:auto;padding:18px}
-section{display:none}.on{display:block}.hero{text-align:center;padding:30px 0}.hero b{font-size:45px}.hero h1{font-size:40px;margin:5px}
-.card{background:#241015;border:1px solid #5d2632;border-radius:20px;padding:20px;margin:14px 0}h2{margin-top:0}
-input,textarea{width:100%;box-sizing:border-box;background:#160a0d;color:white;border:1px solid #6a303d;border-radius:12px;padding:13px;font:inherit;margin:7px 0 12px}textarea{min-height:120px}
-button{width:100%;padding:14px;margin:7px 0;border:0;border-radius:13px;background:#e11d48;color:white;font-weight:800;font-size:16px}.secondary{background:#3b1b24}
-.code{text-align:center;font-size:34px;font-weight:900;letter-spacing:6px;color:#fbbf24}.row{display:flex;gap:8px}.row>*{flex:1}.score{text-align:center;background:#1c0b10;border:1px solid #51202b;border-radius:12px;padding:8px}.score strong{display:block;font-size:23px;color:#fbbf24}.question{font-size:24px;line-height:1.4;margin:16px 0}.type{color:#fb7185;font-weight:900}.notice{background:#31131c;border-radius:12px;padding:12px;margin-top:10px}.hide{display:none}.muted{color:#d8b9c0}
-</style></head><body><main>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#7b1021">
+  <meta name="description" content="Apimentados — jogo para casais">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <title>Apimentados 🔥</title>
+  <style>
+    :root{--bg:#12070a;--card:#241015;--red:#e11d48;--red2:#fb7185;--text:#fff7f8;--muted:#d6b9bf;--gold:#fbbf24}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#3b0c18 0,#12070a 55%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+    main{max-width:620px;margin:auto;padding:22px 16px 40px}.screen{display:none}.screen.active{display:block}
+    .hero{text-align:center;padding:42px 10px 20px}.logo{font-size:58px}.hero h1{font-size:42px;margin:4px 0 8px}.hero p{color:var(--muted);line-height:1.5}
+    .card{background:rgba(36,16,21,.94);border:1px solid #5a2431;border-radius:22px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);margin:14px 0}
+    h2{margin-top:0}.rules{line-height:1.65;color:#f7dfe3}.rules li{margin:7px 0}
+    input,textarea{width:100%;background:#160a0d;color:white;border:1px solid #66303c;border-radius:14px;padding:14px;font:inherit;outline:none}
+    textarea{min-height:130px;resize:vertical}.field{margin:14px 0}.field label{display:block;margin-bottom:7px;color:#f4cbd2;font-weight:700}
+    button{border:0;border-radius:14px;padding:14px 18px;font:700 16px inherit;cursor:pointer;width:100%;margin-top:10px;background:linear-gradient(135deg,var(--red),#9f1239);color:white;box-shadow:0 8px 20px rgba(225,29,72,.25)}
+    button.secondary{background:#3a1b23}.top{display:flex;justify-content:space-between;gap:10px;align-items:center}.badge{background:#4a1724;padding:7px 10px;border-radius:999px;font-size:13px}
+    .question{font-size:25px;line-height:1.35;margin:18px 0}.type{color:#fb7185;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .scorebar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.score{background:#1c0b10;border:1px solid #51202b;border-radius:14px;padding:10px;text-align:center}.score strong{display:block;font-size:24px;color:var(--gold)}
+    .small{font-size:13px;color:var(--muted);line-height:1.5}.winner{text-align:center;padding:20px 0}.winner .emoji{font-size:64px}
+    .install{display:none;background:#2f1119;border:1px solid #7d2a3b;border-radius:14px;padding:12px;margin-bottom:12px}
+    @media (display-mode: standalone){.install{display:none!important}}
+  </style>
+</head>
+<body>
+<main>
+  <section id="welcome" class="screen active">
+    <div class="hero"><div class="logo">🔥😈</div><h1>APIMENTADOS</h1><p>Um jogo para casal que vai deixar a noite muito mais quente.</p></div>
+    <div id="installBox" class="install"><b>📲 Instale no celular:</b><br><span id="installText">Use o menu do navegador e escolha “Adicionar à tela inicial”.</span><button id="installBtn" style="display:none">📲 Instalar Apimentados</button></div>
+    <div class="card">
+      <h2>🔥 Bem-vindos!</h2>
+      <p>Bem-vindo ao jogo que vai te deixar molhado(a)! 😈<br><br>Aqui vocês podem avaliar as respostas de 0 a 10 e somar pontos para descobrir quem é mais safado(a) e quem gostou de toda a safadeza que vocês querem fazer ou já fizeram.<br><br>🔥 Agora bora jogar e morrer de tesão! 🔥😈❤️</p>
+      <button onclick="show('rules')">COMEÇAR 🔥</button>
+    </div>
+  </section>
 
-<section id="home" class="on"><div class="hero"><b>🔥😈</b><h1>APIMENTADOS</h1><p class="muted">Cada um no seu celular.</p></div>
-<div class="card"><h2>🎮 Criar sala</h2><input id="host" placeholder="Seu nome"><button id="create">CRIAR SALA</button></div>
-<div class="card"><h2>🔑 Entrar</h2><input id="joinName" placeholder="Seu nome"><input id="code" maxlength="7" placeholder="Código da sala"><button id="join">ENTRAR NA SALA</button></div></section>
+  <section id="rules" class="screen">
+    <div class="card"><h2>📜 Regras</h2>
+      <ol class="rules">
+        <li>Joguem em casal e escolham quem começa.</li>
+        <li>Responda à pergunta ou cumpra o desafio.</li>
+        <li>Envie sua resposta para o parceiro(a).</li>
+        <li>O parceiro(a) dá uma nota de 0 a 10.</li>
+        <li>A pontuação é somada automaticamente para cada jogador.</li>
+        <li>As perguntas aparecem em ordem aleatória.</li>
+        <li>Seja verdadeiro(a) e conte tudo para o seu parceiro(a).</li>
+        <li>No final, quem tiver mais pontos vence.</li>
+        <li>O vencedor pode pedir o que quiser. 😈❤️</li>
+      </ol>
+      <button onclick="show('names')">ENTENDI — VAMOS JOGAR 🔥</button>
+    </div>
+  </section>
 
-<section id="lobby"><div class="card" style="text-align:center"><h2>🔥 CÓDIGO DA SALA</h2><div class="code" id="room"></div><button id="share">📤 COMPARTILHAR CÓDIGO</button></div>
-<div class="card"><h2>Jogadores</h2><p id="p1"></p><p id="p2"></p><div class="notice" id="status"></div><button id="start" disabled>COMEÇAR PARTIDA</button></div></section>
+  <section id="names" class="screen">
+    <div class="card"><h2>👩‍❤️‍👨 Quem vai jogar?</h2>
+      <div class="field"><label>Jogador(a) 1</label><input id="p1" placeholder="Nome"></div>
+      <div class="field"><label>Jogador(a) 2</label><input id="p2" placeholder="Nome"></div>
+      <button onclick="startGame()">COMEÇAR O JOGO 😈</button>
+    </div>
+  </section>
 
-<section id="game"><div class="row"><div class="score"><span id="n0"></span><strong id="s0">0</strong></div><div class="score"><span id="n1"></span><strong id="s1">0</strong></div></div>
-<div class="card"><div id="categoryChoice"><h2 style="text-align:center">🤔 Pergunta ou desafio? 😈</h2><p class="muted" style="text-align:center">Escolham a categoria da próxima rodada.</p><button id="chooseQuestion">🤔 PERGUNTA</button><button id="chooseChallenge" class="secondary">😈 DESAFIO</button><div class="notice" id="choiceWait"></div></div><div id="cardPlay"><div class="type" id="type"></div><div class="question" id="q"></div><div class="muted" id="progress"></div>
-<div id="answerBox"><textarea id="answer" placeholder="Digite sua resposta..."></textarea><button id="send">📤 ENVIAR RESPOSTA</button></div>
-<div id="wait" class="notice hide"></div>
-<div id="rateBox" class="hide"><div class="notice" id="received"></div><input id="rating" type="number" min="0" max="10" placeholder="Nota 0–10"><button id="rate">⭐ DAR NOTA</button></div></div></div></section>
+  <section id="game" class="screen">
+    <div class="top"><span class="badge" id="turn"></span><span class="badge" id="count"></span></div>
+    <div class="scorebar"><div class="score"><span id="n1">Jogador 1</span><strong id="s1">0</strong></div><div class="score"><span id="n2">Jogador 2</span><strong id="s2">0</strong></div></div>
+    <div class="card">
+      <div class="type" id="type"></div>
+      <div class="question" id="question"></div>
+      <textarea id="answer" placeholder="Digite sua resposta aqui..."></textarea>
+      <button onclick="shareAnswer()">📤 Enviar resposta</button>
+      <button class="secondary" onclick="showRating()">CONTINUAR PARA A NOTA</button>
+    </div>
+  </section>
 
-<section id="finish"><div class="card" style="text-align:center"><div style="font-size:60px">🏆🔥</div><h2 id="winner"></h2><p id="final" class="muted"></p><h2>AGORA PEÇA O QUE QUISER! 😈❤️</h2><button onclick="location.reload()">NOVA PARTIDA</button></div></section>
+  <section id="rating" class="screen">
+    <div class="card"><h2>🔥 Avaliação</h2><p id="rateText"></p>
+      <div class="field"><label>Nota de 0 a 10</label><input id="ratingInput" type="number" min="0" max="10" step="1" placeholder="0–10"></div>
+      <button onclick="rate()">⭐ REGISTRAR NOTA</button>
+    </div>
+  </section>
 
-<script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import{getAuth,signInAnonymously}from"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-import{getDatabase,ref,set,get,update,onValue,runTransaction}from"https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+  <section id="end" class="screen">
+    <div class="card winner"><div class="emoji">🏆🔥</div><h2 id="result"></h2><p id="finalScores"></p><h2>AGORA PEÇA O QUE QUISER! 😈❤️</h2><button onclick="location.reload()">JOGAR NOVAMENTE 🔥</button></div>
+  </section>
+</main>
 
-const firebaseConfig={apiKey:"AIzaSyBCGq1koMhQYiGeIv1upLtcKuLPuvyd_Bk",authDomain:"apimentados-b96cf.firebaseapp.com",databaseURL:"https://apimentados-b96cf-default-rtdb.firebaseio.com/",projectId:"apimentados-b96cf",storageBucket:"apimentados-b96cf.firebasestorage.app",messagingSenderId:"270449801578",appId:"1:270449801578:web:7a566417d94524dfac4d13"};
-const cards=[
-["Pergunta","Você já gozou vendo vídeos ou filmes?"],["Pergunta","Você já se masturbou pensando em alguém?"],["Pergunta","Você já se masturbou com alguém do lado sem ela saber?"],["Pergunta","Qual lugar que vc quer muito transar?"],["Pergunta","Vc já quis dar ou chupar alguém mesmo estando casada? Quem?"],["Pergunta","Você gosta de transar em qual posição?"],["Pergunta","Você já quis transar com algum conhecido? Quando?"],["Pergunta","Já transou na Rua/Beco/Quintal?"],["Pergunta","Já transou por dinheiro?"],["Pergunta","Prefere chupar ou ser chupado(a)?"],["Pergunta","Gosta de beber pra transar ou prefere transar sem beber?"],["Pergunta","Já quis dar em uma balada quando era solteiro(a)"],["Pergunta","Gosta de masrurbar ou ver?"],["Pergunta","O que te deixa com tesão?"],["Pergunta","Prefere que tirem sua roupa lento ou com força e vontade?"],["Pergunta","Já transou ou quis transar com mais de uma pessoa em alguma festa?"],["Pergunta","Gosta de chupar goza?"],["Pergunta","Sente saudade de transar com alguem?"],["Pergunta","Já quis saber se alguém queria te pegar?"],["Pergunta","Já quis pegar alguém mesmo com alguém do lado?"],["Pergunta","Uma vontade?"],["Pergunta","Já quis transar com alguém do mesmo sexo? Quem?"],["Pergunta","Já quis chupar uma pessoa do mesmo sexo? Quem?"],["Pergunta","Já saiu com amigos e quis fazer sexo A3?"],["Pergunta","Já sentiu vontade de transar com alguém que nunca transou?"],["Pergunta","Prefere que seu parceiro(a) goze ou faça gozar?"],["Pergunta","Prefere assistir ou participar?"],["Pergunta","Já viu alguém transando e ficou com tesão? Conte um pouco como foi."],["Pergunta","Já lembrou transando com alguém e ficou com vontade de transar de novo?"],["Pergunta","Qual lugar que já transou que te deu medo e tesão ao mesmo tempo?"],
-["Pergunta","Por qual parte você gosta que comece uma pré-transa?"],
-["Pergunta","Quantas pessoas você gostaria de transar ao mesmo tempo?"],
-["Pergunta","Conte algo quente que já fez ou quer fazer e nunca conseguiu contar para ninguém."],
-["Pergunta","Já se arrependeu de não ter transado com alguém?"],
-["Pergunta","Já se esfregou em alguém e ficou com muita vontade?"],
-["Pergunta","Já viu alguém transar e ficou com vontade dessa pessoa?"],
-["Pergunta","Já viu alguém pelado(a) e quis transar com essa pessoa? (Homem ou mulher.)"],
-["Pergunta","Já quis que alguém visse você transando ou se masturbando?"],
-["Pergunta","Já quis transar com alguém na piscina em que estavam?"],
-["Pergunta","Já se imaginou transando com alguém com quem nunca transou?"],["Desafio","Tire uma peça de roupa."],["Desafio","Mande uma foto de visualização única para alguém."],["Desafio","Passe a mão em algum lugar do seu corpo."],["Desafio","Peça para alguém fazer algo em vc."],["Desafio","Peça um desejo"],["Desafio","Mandei um vídeo safado para alguém que quiser."]];
+<script>
+const questions = [
+["Pergunta","Você já gozou vendo vídeos ou filmes?"],["Pergunta","Você já se masturbou pensando em alguém?"],["Pergunta","Você já se masturbou com alguém do lado sem ela saber?"],["Pergunta","Qual lugar que vc quer muito transar?"],["Pergunta","Vc já quis dar ou chupar alguém mesmo estando casada? Quem?"],["Pergunta","Você gosta de transar em qual posição?"],["Pergunta","Você já quis transar com algum conhecido? Quando?"],["Pergunta","Já transou na Rua/Beco/Quintal?"],["Pergunta","Já transou por dinheiro?"],["Pergunta","Prefere chupar ou ser chupado(a) ?"],["Pergunta","Gosta de beber pra transar ou prefere transar sem beber?"],["Pergunta","Já quis dar em uma balada quando era solteiro(a)"],["Pergunta","Gosta de masrurbar ou ver?"],["Pergunta","O que te deixa com tesão?"],["Pergunta","Prefere que tirem sua roupa lento ou com força e vontade?"],["Pergunta","Já transou ou quis transar com mais de uma pessoa em alguma festa?"],["Pergunta","Gosta de chupar goza?"],["Pergunta","Sente saudade de transar com alguem?"],["Pergunta","Já quis saber se alguém queria te pegar?"],["Pergunta","Já quis pegar alguém mesmo com alguém do lado?"],["Pergunta","Uma vontade?"],["Pergunta","Já quis transar com alguém do mesmo sexo?Quem?"],["Pergunta","Já quis chupar uma pessoa do mesmo sexo? Quem?"],["Pergunta","Já saiu com amigos e quis fazer sexo A3?"],["Pergunta","Já sentiu vontade de transar com alguém que nunca transou?"],["Pergunta","Prefere que seu parceiro(a) goze ou faça gozar?"],["Pergunta","Prefere assistir ou participar?"],["Pergunta","Já viu alguém transando e ficou com tesão? Conte um pouco como foi."],["Pergunta","Já lembrou transando com alguém e ficou com vontade de transar de novo?"],["Pergunta","Qual lugar que já transou que te deu medo e tesão ao mesmo tempo?"],
+["Desafio","Tire uma peça de roupa."],["Desafio","Mande uma foto de visualização única para alguém."],["Desafio","Passe a mão em algum lugar do seu corpo."],["Desafio","Peça para alguém fazer algo em vc."],["Desafio","Peça um desejo"],["Desafio","Mandei um vídeo safado para alguém que quiser."]
+];
 const bonus=["Bônus","Se seu parceiro(a) deixasse vc transar com alguém que vc deseja fazer ou já fez, quem seria e aonde seria? Você levaria pra ver ou preferiria deixar só na imaginação dele(a)? Com camisinha ou pele na pele?"];
-let db,user,roomId,role,data;
-const $=x=>document.getElementById(x), show=x=>document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===x));
-function shuffle(a){return[...a].sort(()=>Math.random()-.5)} function fail(x){alert(x)}
-async function connect(){if(firebaseConfig.apiKey==="COLE_AQUI")throw Error("Primeiro configure o Firebase no index.html.");const app=initializeApp(firebaseConfig);const auth=getAuth(app);user=(await signInAnonymously(auth)).user;db=getDatabase(app)}
-function listen(){onValue(ref(db,"rooms/"+roomId),s=>{data=s.val();if(!data)return fail("Sala encerrada.");render()})}
-function render(){if(data.status==="lobby"){show("lobby");$("room").textContent=roomId;$("p1").textContent="🔥 "+(data.players?.[0]?.name||"Aguardando...");$("p2").textContent="❤️ "+(data.players?.[1]?.name||"Aguardando...");$("start").disabled=!(role===0&&data.players?.[1]);$("status").textContent=data.players?.[1]?"Os dois estão na sala. Jogador 1 pode começar!":"Aguardando o segundo jogador...";return}if(data.status==="finished"){show("finish");let s=data.scores||[0,0],p=data.players;$("winner").textContent=s[0]===s[1]?"EMPATE! 😈❤️":(s[0]>s[1]?p[0].name:p[1].name)+" VENCEU! 🔥";$("final").innerHTML=p[0].name+": <b>"+s[0]+"</b> pontos<br>"+p[1].name+": <b>"+s[1]+"</b> pontos";return}show("game");let p=data.players,s=data.scores||[0,0];$("n0").textContent=p[0].name;$("n1").textContent=p[1].name;$("s0").textContent=s[0];$("s1").textContent=s[1];let choosing=data.status==="choose";$("categoryChoice").classList.toggle("hide",!choosing);$("cardPlay").classList.toggle("hide",choosing);if(choosing){let qLeft=data.questionIndex<data.questionDeck.length,dLeft=data.challengeIndex<data.challengeDeck.length;$("chooseQuestion").disabled=role!==0||!qLeft;$("chooseChallenge").disabled=role!==0||!dLeft;$("choiceWait").textContent=role===0?"Escolha para todos: pergunta ou desafio?":"Aguardando "+p[0].name+" escolher pergunta ou desafio...";return}let c=data.currentCard,turn=data.turn,part=data.roundPart||0;$("type").textContent=c[0];$("q").textContent=c[1];$("progress").textContent="Esta "+c[0].toLowerCase()+" será respondida pelos dois • resposta "+(part+1)+" de 2";$("answerBox").classList.toggle("hide",role!==turn||data.status==="rating");$("wait").classList.toggle("hide",role===turn&&data.status!=="rating");$("wait").textContent=data.status==="rating"?"Resposta enviada. Aguardando a avaliação.":"Vez de "+p[turn].name+" responder.";$("rateBox").classList.toggle("hide",!(data.status==="rating"&&role!==turn));if(data.status==="rating")$("received").textContent="Resposta de "+p[turn].name+": "+data.answer}
-async function create(){await connect();role=0;roomId="AP"+Math.random().toString(36).slice(2,7).toUpperCase();let questionDeck=shuffle(cards.filter(c=>c[0]==="Pergunta").concat([bonus])),challengeDeck=shuffle(cards.filter(c=>c[0]==="Desafio"));await set(ref(db,"rooms/"+roomId),{players:[{name:$("host").value.trim()||"Jogador 1",uid:user.uid},null],scores:[0,0],turn:0,status:"lobby",questionDeck,challengeDeck,questionIndex:0,challengeIndex:0,roundPart:0,answer:""});listen()}
-async function join(){await connect();roomId=$("code").value.trim().toUpperCase();if(!/^AP[A-Z0-9]{5}$/.test(roomId))throw Error("Código inválido.");let r=ref(db,"rooms/"+roomId),s=await get(r);if(!s.exists())throw Error("Sala não encontrada.");let t=await runTransaction(r,x=>{if(!x)return x;x.players=x.players||[];if(x.players[1])return;x.players[1]={name:$("joinName").value.trim()||"Jogador 2",uid:user.uid};return x});if(!t.committed)throw Error("A sala já está cheia.");role=1;listen()}
-$("create").onclick=()=>create().catch(e=>fail(e.message));$("join").onclick=()=>join().catch(e=>fail(e.message));
-$("start").onclick=()=>update(ref(db,"rooms/"+roomId),{status:"choose"}).catch(e=>fail(e.message));
-async function chooseCategory(category){if(role!==0||data.status!=="choose")return;let isQ=category==="Pergunta",idx=isQ?data.questionIndex:data.challengeIndex,deck=isQ?data.questionDeck:data.challengeDeck;if(idx>=deck.length)return fail("Não há mais cartas dessa categoria.");let card=deck[idx],patch={status:"playing",currentCard:card,turn:0,roundPart:0,answer:""};patch[isQ?"questionIndex":"challengeIndex"]=idx+1;await update(ref(db,"rooms/"+roomId),patch)}
-$("chooseQuestion").onclick=()=>chooseCategory("Pergunta").catch(e=>fail(e.message));$("chooseChallenge").onclick=()=>chooseCategory("Desafio").catch(e=>fail(e.message));
-$("send").onclick=()=>{let a=$("answer").value.trim();if(!a)return fail("Digite sua resposta.");update(ref(db,"rooms/"+roomId),{answer:a,status:"rating"}).catch(e=>fail(e.message))};
-$("rate").onclick=async()=>{let n=Number($("rating").value);if(!Number.isInteger(n)||n<0||n>10)return fail("Nota de 0 a 10.");let s=[...(data.scores||[0,0])];s[data.turn]+=n;let part=data.roundPart||0;if(part===0){await update(ref(db,"rooms/"+roomId),{scores:s,roundPart:1,turn:1-data.turn,status:"playing",answer:""})}else{let doneQ=data.questionIndex>=data.questionDeck.length,doneD=data.challengeIndex>=data.challengeDeck.length;await update(ref(db,"rooms/"+roomId),{scores:s,roundPart:0,turn:0,status:doneQ&&doneD?"finished":"choose",answer:"",currentCard:null})}};
-$("share").onclick=()=>navigator.share?navigator.share({title:"Apimentados 🔥",text:"Entre na minha sala Apimentados com o código: "+roomId}):prompt("Código da sala:",roomId);
-$("code").oninput=e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,7);
-</script></main></body></html>
+let deck=[], idx=0, players=[], scores=[0,0], current=0, deferredPrompt=null;
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function startGame(){
+  players=[document.getElementById('p1').value.trim()||'Jogador 1',document.getElementById('p2').value.trim()||'Jogador 2'];
+  scores=[0,0];current=0;idx=0;deck=[...questions].sort(()=>Math.random()-.5);show('game');render();
+}
+function render(){
+  const c=deck[idx];document.getElementById('turn').textContent='Vez de '+players[current];
+  document.getElementById('count').textContent=`${idx+1}/${deck.length+1}`;
+  document.getElementById('n1').textContent=players[0];document.getElementById('n2').textContent=players[1];
+  document.getElementById('s1').textContent=scores[0];document.getElementById('s2').textContent=scores[1];
+  document.getElementById('type').textContent=c[0];document.getElementById('question').textContent=c[1];
+  document.getElementById('answer').value='';
+}
+function shareAnswer(){
+  const q=document.getElementById('question').textContent,a=document.getElementById('answer').value.trim();
+  if(!a){alert('Digite sua resposta primeiro.');return}
+  const text=`🔥 APIMENTADOS 🔥\n${players[current]} respondeu:\n\n${q}\n\nResposta: ${a}`;
+  if(navigator.share) navigator.share({title:'Apimentados 🔥',text}).catch(()=>{});
+  else navigator.clipboard?.writeText(text).then(()=>alert('Resposta copiada! Envie para seu parceiro(a).')).catch(()=>prompt('Copie sua resposta:',text));
+}
+function showRating(){const a=document.getElementById('answer').value.trim();if(!a){alert('Digite sua resposta antes de continuar.');return}document.getElementById('rateText').textContent=`${players[current]} respondeu. Agora ${players[1-current]}, dê uma nota de 0 a 10.`;document.getElementById('ratingInput').value='';show('rating');}
+function rate(){
+  const n=Number(document.getElementById('ratingInput').value);
+  if(!Number.isInteger(n)||n<0||n>10){alert('Digite uma nota inteira de 0 a 10.');return}
+  scores[current]+=n;idx++;
+  if(idx>=deck.length){show('bonus');renderBonus();return}
+  current=1-current;show('game');render();
+}
+function renderBonus(){
+  document.getElementById('turn').textContent='Bônus — vez de '+players[current];document.getElementById('count').textContent='BÔNUS';
+  document.getElementById('type').textContent=bonus[0];document.getElementById('question').textContent=bonus[1];document.getElementById('answer').value='';
+  show('game'); document.querySelector('#game button.secondary').onclick=()=>{showRatingBonus()};
+}
+function showRatingBonus(){const a=document.getElementById('answer').value.trim();if(!a){alert('Digite sua resposta primeiro.');return}document.getElementById('rateText').textContent=`${players[current]} respondeu ao bônus. Agora ${players[1-current]}, dê uma nota de 0 a 10.`;document.getElementById('ratingInput').value='';document.querySelector('#rating button').onclick=rateBonus;show('rating');}
+function rateBonus(){const n=Number(document.getElementById('ratingInput').value);if(!Number.isInteger(n)||n<0||n>10){alert('Digite uma nota inteira de 0 a 10.');return}scores[current]+=n;finish();}
+function finish(){document.getElementById('finalScores').innerHTML=`${players[0]}: <b>${scores[0]}</b> pontos<br>${players[1]}: <b>${scores[1]}</b> pontos`;document.getElementById('result').textContent=scores[0]===scores[1]?'EMPATE! 😈❤️':`${scores[0]>scores[1]?players[0]:players[1]} VENCEU! 🔥`;show('end');}
+
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBox').style.display='block';document.getElementById('installBtn').style.display='block';document.getElementById('installBtn').onclick=async()=>{deferredPrompt.prompt();deferredPrompt=null;}});
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
