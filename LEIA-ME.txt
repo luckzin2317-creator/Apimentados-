@@ -1,0 +1,15 @@
+APIMENTADOS — DOIS CELULARES
+
+1) Crie um projeto no Firebase Console: https://console.firebase.google.com/
+2) Adicione um app Web e copie o firebaseConfig.
+3) Cole o firebaseConfig no index.html, substituindo os valores COLE_AQUI.
+4) Em Authentication > Sign-in method, ative Anonymous.
+5) Crie Realtime Database.
+6) Configure as regras usando firebase-rules.json.
+7) Publique index.html, manifest.webmanifest e sw.js em hospedagem HTTPS.
+8) Celular 1: Criar sala e compartilhar o código.
+9) Celular 2: Entrar com o código.
+10) Jogador 1 inicia; cada jogador responde no próprio celular e o outro dá a nota.
+
+O Realtime Database é usado para sincronizar as mudanças entre os dois celulares.
+As regras fornecidas são para protótipo privado; antes de publicar amplamente, devem ser endurecidas.
